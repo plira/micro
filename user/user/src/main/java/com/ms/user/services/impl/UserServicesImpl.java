@@ -6,10 +6,10 @@ import com.ms.user.repository.UserRepository;
 import com.ms.user.services.UserServices;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,7 +33,10 @@ public class UserServicesImpl implements UserServices {
             userModel.setEmail(dto.email());
             return userRepository.save(userModel);
         }catch (Exception ex ){
-        System.out.println("Erro: "+ex.getMessage());
+
+
+         System.out.println("Erro: "+ex.getMessage());
+
 
 
     }
@@ -45,5 +48,11 @@ public class UserServicesImpl implements UserServices {
     @Override
     public Optional<UserModel> existsByNomeItem(String name) {
         return this.userRepository.existsByNomeItem(name);
+    }
+
+    @Override
+    public List<UserModel> findAll() {
+
+        return userRepository.findAll();
     }
 }
